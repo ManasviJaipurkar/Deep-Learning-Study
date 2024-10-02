@@ -1,0 +1,43 @@
+1. Importing Libraries
+PyTorch: Used for building and training the CNN model (torch, torchvision, torch.nn, torch.optim).
+Matplotlib: Used for plotting images of predictions.
+NumPy and Pandas: External libraries for numerical and data manipulations.
+Torchvision: Provides datasets and transformations.
+
+2. Loading the MNIST Dataset
+The MNIST dataset is downloaded using torchvision.datasets.MNIST. The images are transformed into tensors using ToTensor(), making them suitable for training.
+The dataset is split into training and testing data:
+Train Data: 60,000 samples of 28x28 pixel grayscale images.
+Test Data: 10,000 samples of 28x28 pixel grayscale images.
+
+3. Data Loader
+DataLoader: Used to load the dataset in batches for both training and testing.
+Batch Size: Set to 50, meaning 50 images are processed in each batch.
+
+4. CNN Model Architecture
+The model consists of 4 convolutional layers and 2 fully connected layers:
+Convolutional Layers: Learn features from the images using 10, 20, 40, and 80 filters, respectively, with ReLU activation and max-pooling layers.
+Dropout Layer: Used to prevent overfitting by randomly dropping some neurons during training.
+Fully Connected Layers: After flattening, the output is passed through two fully connected layers with 50 neurons in the first layer and 10 output neurons (for 10 digit classes).
+Softmax Activation: Used in the output layer to convert the logits into probabilities for each digit class.
+
+5. Training the Model
+The model is trained on the MNIST dataset using the Adam optimizer with a learning rate of 0.001.
+CrossEntropyLoss is used as the loss function.
+During training, for each epoch, the model computes the loss, backpropagates, and updates the weights using the optimizer.
+
+6. Testing the Model
+The model is evaluated on the test data after each epoch. It calculates the average loss and accuracy on the test dataset.
+Predictions are made by selecting the class with the highest output score from the model.
+
+7. Prediction on Specific Samples
+The code makes predictions on specific indices from the test dataset.
+The prediction is displayed along with the corresponding MNIST image using Matplotlib.
+
+8. Training Process
+The model is trained for 50 epochs, with the training and testing functions executed in each epoch.
+The train() function performs forward and backward passes, and the test() function evaluates the model on test data.
+
+9. Prediction and Visualization
+After training, the model is used to predict the labels of specific test samples (indices like 33, 78, 666).
+The corresponding image and predicted label are displayed using Matplotlib.
