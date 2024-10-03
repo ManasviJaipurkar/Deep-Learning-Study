@@ -1,0 +1,36 @@
+PART 1
+
+1. Loading the Pre-trained Model (VGG16):
+The VGG16 model is loaded from Keras' pre-trained model library. This model has already been trained on the ImageNet dataset, 
+which contains millions of labeled images for 1000 categories. The VGG16 architecture is particularly deep, consisting of 16 layers 
+(13 convolutional layers and 3 fully connected layers).By using this pre-trained model.
+
+VGG16 Summary: The model summary shows the layers of VGG16, including the convolutional and fully connected layers, as well as the 
+total number of parameters. This gives a high-level overview of how the model is structured.
+
+2. Visualizing the Model Architecture:
+By using the plot_model function, the architecture of VGG16 can be visualized in a PNG image file. This is helpful for 
+understanding the layer-by-layer structure of the network. Each layer’s input, output, and connections can be inspected 
+visually to comprehend the flow of data through the model.
+
+3. Loading and Preprocessing an Image:
+Loading the Image: The image to be classified is loaded using the load_img function, where it is resized to 224x224 pixels. 
+This size is specific to VGG16, as the model was trained on 224x224 images, and the input dimensions must match for successful prediction.
+
+Converting the Image to an Array: The image is then converted into a numerical array. Neural networks require the input data to be in a numerical format so the image's pixel values are represented in a multi-dimensional array.
+
+Reshaping the Image: The image is reshaped into the appropriate format (batch size, height, width, and number of channels). VGG16 expects a batch size (even if it's just one image), along with a height of 224 pixels, a width of 224 pixels, and 3 color channels (for RGB images).
+
+Preprocessing the Image: Before feeding the image into the network, it is preprocessed in a way that matches the preprocessing done during the training of VGG16. Specifically, the pixel values are transformed so that they have the same mean and variance as the original training data, making the model’s predictions more accurate.
+
+4. Predicting the Class of the Image:
+The preprocessed image is fed into the VGG16 model for prediction. The model generates a vector of probabilities for each of the 
+1000 possible classes (categories from ImageNet).
+
+Decoding the Predictions: The vector of predictions (probabilities) is passed to the decode_predictions function. 
+This function maps the predicted probabilities back to human-readable class labels along with the confidence score for each label.
+
+The top prediction is extracted from the list of labels returned by the decode_predictions function. The label with the highest probability is considered the best prediction, and the associated class name is printed along with the confidence score (as a percentage). The output indicates what the model believes the object in the image is and how confident it is in that classification.
+
+5. Interpreting the Output:
+The final output consists of the class label and a confidence score.
