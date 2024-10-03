@@ -1,0 +1,36 @@
+1.Importing necessary libraries:
+Various libraries such as torch, keras, numpy, and others are imported. These include essential components for handling datasets, building neural networks, and managing image data for classification tasks.
+
+2.Checking for CUDA availability:
+If a GPU is available, the code ensures deterministic behavior using the torch.backends.cudnn.deterministic = True.
+
+3.Loading the MNIST dataset:
+The MNIST dataset of handwritten digits is loaded using Keras’s built-in mnist.load_data() function. The dataset is split into training and testing sets (X_train, Y_train, X_test, Y_test).
+
+4.Preprocessing the dataset:
+The training and test images are reshaped to include a single grayscale channel (28x28x1), and pixel values are normalized to the range [0, 1] by dividing by 255.0. The labels are converted to one-hot encoded vectors for multi-class classification.
+
+5.Building the neural network model (LeNet-50 modification):
+A sequential model is built using Keras, with a structure similar to LeNet but with modifications:
+
+The input shape is defined as (28, 28, 1) to match the MNIST image format.
+Three Conv2D layers with 6, 16, and 16 filters are applied, each followed by ReLU activations for non-linearity. The first two convolutional layers are followed by average pooling layers to reduce the dimensionality of feature maps.
+The output from the convolutional layers is flattened to a single vector before being passed to fully connected layers.
+Two Dense (fully connected) layers are used: the first with 120 neurons and ReLU activation, and the second with 84 neurons and softmax activation. The softmax layer outputs probabilities for the 10 digit classes.
+Compiling the model:
+The model is compiled using the Adam optimizer with a learning rate of 0.001, and categorical cross-entropy is used as the loss function. Accuracy is specified as the evaluation metric.
+
+6.Model training:
+The model is trained on the training set using a batch size of 128 for 10 epochs. 20% of the training data is reserved for validation. The training process is set to output detailed logs during each epoch.
+
+Model evaluation on test set:
+The model’s performance is evaluated on the test set (X_test, Y_test) to compute the test loss and accuracy. These results are printed for analysis.
+
+7.Making predictions:
+After training, the model predicts the labels for the test set images. The softmax probabilities outputted by the model are converted to predicted class labels by taking the index of the highest probability in each case.
+
+8.Creating the submission file:
+The predicted labels are stored in a Pandas DataFrame alongside their corresponding image IDs. The DataFrame is then saved as a CSV file (submission.csv). This CSV file can be used for further analysis or submission to a competition platform.
+
+Saving and printing submission file:
+The first few rows of the submission file are printed to check the structure, showing the image IDs and predicted labels for the test set.
