@@ -1,0 +1,43 @@
+1.Imports and Setup: The code starts by importing necessary libraries such as TensorFlow and Keras. These libraries provide tools for building and training neural networks.
+
+2.Model Definition:
+
+A Sequential model is created, which allows stacking layers in a linear fashion. This is a common practice for CNNs where the input flows from one 
+layer to the next.
+
+3.Convolutional Layers:
+
+Layer 1: Conv2D is used to apply convolutional filters (96 filters of size 7x7) to the input image, capturing spatial features. The stride and padding parameters are set to control how the filter moves across the input.
+Layer 2: Another convolutional layer (256 filters of size 5x5) is added, which deepens the feature extraction process.
+Layer 3: This layer includes 384 filters of size 3x3, further enhancing the model’s ability to capture detailed features.
+Layer 4: Another convolutional layer with 384 filters of size 3x3.
+Layer 5: The final convolutional layer in this series applies 256 filters of size 3x3.
+
+4.Activation Functions:
+
+After each convolutional layer, the ReLU (Rectified Linear Unit) activation function is applied. This introduces non-linearity to the model, 
+allowing it to learn more complex patterns.
+
+5.Max Pooling Layers:
+
+Max pooling layers (MaxPooling2D) are added after specific convolutional layers. These layers reduce the spatial dimensions of the feature maps, preserving the most important information while reducing computation and 
+preventing overfitting. The pooling layers typically use a 2x2 pool size and stride of 2.
+
+6.Flatten Layer:
+
+After the last max pooling layer, the Flatten layer is used to convert the 2D feature maps into a 1D vector. This step prepares the 
+data for the fully connected layers.
+
+7.Fully Connected Layers:
+
+The model includes three fully connected layers (Dense). These layers are designed to learn high-level representations of the features extracted by 
+the convolutional layers.
+
+First Dense Layer: 4096 neurons with ReLU activation.
+Second Dense Layer: 4096 neurons with ReLU activation.
+Output Layer: The final dense layer typically has 1000 neurons (for classification tasks like ImageNet) with softmax activation to output class probabilities.
+
+8.Model Compilation:
+
+The model is compiled with a loss function (usually categorical cross-entropy for multi-class classification), an optimizer (such as Adam), 
+and evaluation metrics (like accuracy).
