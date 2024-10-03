@@ -34,3 +34,39 @@ The top prediction is extracted from the list of labels returned by the decode_p
 
 5. Interpreting the Output:
 The final output consists of the class label and a confidence score.
+
+
+PART 2
+
+The Part 2 process involves using a custom implementation of a VGG16-like architecture to classify a series of images, followed by displaying the images and visualizing the top 3 predicted classes with their respective probabilities. Here’s a detailed explanation:
+
+1. VGG16-like Model Construction:
+The neural network is structured similarly to the VGG16 architecture:
+
+Convolutional Layers: The model starts with several convolutional layers, where each layer applies a set of filters to the input image, extracting different types of features like edges, textures, and more complex patterns. The network begins with smaller feature extraction filters and increases the number of filters as it goes deeper into the network (from 64 to 512).
+Max Pooling: After every few convolutional layers, a MaxPooling layer reduces the spatial dimensions of the feature maps. This helps in downsampling the image, reducing computational complexity, and retaining important features while discarding unnecessary ones.
+Fully Connected Layers: After the convolutional and pooling layers, the output is flattened into a single vector, which is passed through two fully connected layers of 4096 neurons each. These layers perform the final high-level reasoning to classify the image based on the features extracted in the previous layers.
+Output Layer: The last layer is a softmax output layer with 1000 neurons, corresponding to the 1000 categories in the ImageNet dataset. It provides the probability distribution of the input image across these categories.
+
+2. Image Loading and Preprocessing:
+The images to be classified are loaded and preprocessed in the following manner:
+
+Resizing: The images are resized to 224x224 pixels, as this is the input size expected by the VGG16 architecture.
+Normalization: The pixel values are normalized (scaled to values between 0 and 1) to ensure consistency with the model's training data. Normalization helps to speed up training and improves the convergence of the model's predictions.
+
+3. Displaying Images:
+The loaded images are displayed using the matplotlib library. Each image is resized and shown without axes for better visualization. This helps visually correlate the input images with the corresponding predictions.
+
+4. Prediction Process:
+The preprocessed images are fed into the model, which generates a probability distribution across 1000 categories for each image. The output is a list of probabilities, where each probability corresponds to how likely the model thinks the image belongs to each category.
+
+Top 3 Predictions: For each image, the model identifies the top 3 predicted classes by selecting the highest probability values from the output vector. This allows for a better understanding of the model's confidence in different predictions.
+
+5. Visualizing Predictions:
+Bar Plot of Predictions: The top 3 predictions are visualized using a bar plot, where the x-axis represents the predicted probabilities, and the y-axis represents the predicted class labels. Although the class labels are simplified here as "Class X" placeholders, in a real-world scenario, these would be replaced by meaningful class names (e.g., "car", "panda", etc.).
+The bar plot helps to interpret the confidence of the model for each of its predictions, with longer bars representing higher confidence in the corresponding class.
+
+6. Interpreting the Results:
+The displayed bar plots allow for a quick assessment of how well the model is performing on the given images. If the top prediction has a significantly higher probability than the others, it shows that the model is confident in its decision.
+
+
